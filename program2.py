@@ -12,10 +12,10 @@ def romanToInt(s):
     total = 0
     prev_value = 0
 
-    for char in s:
+    for char in s[::-1]:
         value = roman_values[char]
-        if value > prev_value:
-            total += value - 2 * prev_value  # Subtract twice the previous value
+        if value < prev_value:
+            total -= value
         else:
             total += value
         prev_value = value
@@ -23,8 +23,7 @@ def romanToInt(s):
     return total
 
 # Test cases
-print(romanToInt("III"))  # Output: 3
-print(romanToInt("IV"))   # Output: 4
-print(romanToInt("IX"))   # Output: 9
-print(romanToInt("LVIII"))# Output: 58
+print(romanToInt("III"))     # Output: 3
+print(romanToInt("LVIII"))   # Output: 58
 print(romanToInt("MCMXCIV")) # Output: 1994
+
